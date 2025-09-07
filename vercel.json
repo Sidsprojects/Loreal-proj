@@ -1,0 +1,5 @@
+{
+    "builds": [
+      { "src": "gundi.html", "use": "@vercel/static" }
+    ]
+  }
