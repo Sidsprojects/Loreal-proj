@@ -1,0 +1,552 @@
+<!-- coded and developed by Siddharth Shukla, -->
+<!-- Fire the person who did this task -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hair Care Catalog</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Oswald:wght@200..700&family=Teko:wght@300..700&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #fff8f0;
+            color: #333;
+        }
+
+        header {
+            background: #060606;
+            color: white;
+            padding: 20px 10px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+
+        section {
+            background: white;
+            border-radius: 10px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #000000;
+            margin-top: 0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        .highlight {
+            color: #000000;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+            color: #777;
+            border-top: 1px solid #ddd;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            .container {
+                padding: 0 10px;
+            }
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            /* spacing between cards */
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .question-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-card h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+            flex: 1;
+            /* take up available space */
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 600px;
+            margin: 50px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .question-card {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .question-card h2 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin: 0;
+            flex: 1;
+        }
+
+        .arrow-btn {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .arrow-btn.rotated {
+            transform: rotate(180deg);
+        }
+
+        .question-card ul {
+            margin: 0.8rem 0 0;
+            padding: 0;
+            display: none;
+            /* hidden by default */
+        }
+
+        .question-card ul.show {
+            width: 100%;
+            display: block;
+            animation: dropdown 0.3s ease;
+        }
+
+        @keyframes dropdown {
+            from {
+                opacity: 0;
+                transform: translateY(-5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question-card ul li {
+            list-style: none;
+            margin: 0.5rem 0;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            background: #f7f7f7;
+            border: 1px solid #e0e0e0;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.1s ease;
+        }
+
+        .question-card ul li:hover {
+            background: #e9f5ff;
+            transform: translateY(-2px);
+        }
+
+        .question-card ul li:active {
+            background: #d0ebff;
+            transform: translateY(0);
+        }
+
+        .question-btn {
+            display: flex;
+            width: 100%;
+        }
+
+        .slider {
+            position: relative;
+            width: 90vw;
+            height: 330px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            transition: left 0.8s ease-in-out;
+        }
+
+        .slider img.active {
+            left: 0;
+        }
+
+        .slider img.prev {
+            left: -100%;
+        }
+
+        /* Navigation buttons */
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .btn.left {
+            left: 10px;
+        }
+
+        .btn.right {
+            right: 10px;
+        }
+
+        .slider-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            padding: 20px;
+        }
+
+        .hair-header {
+            font-family: "oswald";
+            width: 100%;
+        }
+
+        .laundiya {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+        }
+
+        .laundiya img {
+            width: 90vw;
+            height: 600px;
+            margin-top: 2rem;
+        }
+
+        .vitaminoHeading {
+            font-family: cursive;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            font-size: 40px;
+        }
+
+        .vitaminoHeading img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .vitaminoHeading h2 {
+            font-family: 'oswald';
+            margin: 0;
+        }
+
+        .vitaminoHeading h3 {
+            margin-top: 10px;
+            font-family: 'oswald';
+            font-size: 40px;
+        }
+
+        .vitP img {
+            height: 200px;
+            width: 200px;
+            cursor: pointer;
+        }
+
+        .vitP {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            gap: 5vw;
+            flex-wrap: wrap;
+        }
+
+
+        @media screen and (max-width: 900px) {
+            .hair-header {
+            font-family: "oswald";
+            width: auto;
+        }
+        .slider-container {
+            width: auto;
+            height: 200px;
+        }
+        .slider-container img {
+            width: auto;
+            height: 200px;
+        }
+        .slider {
+            height: 200px;
+        }
+        .question-card {
+            width: auto;
+        }
+        .laundiya img {
+            height: 300px;
+        }
+}
+    </style>
+</head>
+
+<body style="overflow-x: hidden;">
+
+    <header class="hair-header">
+        <h1>Unveiling the new era of hair care</h1>
+        <p>Discover the perfect hair care plan for you!</p>
+    </header>
+
+    <div class="slider-container">
+        <div class="slider">
+            <img src="./imgs/2.png">
+            <img src="./imgs/2.png" class="active" alt="Image 1">
+            <img src="./imgs/3.webp" alt="Image 2">
+
+        </div>
+    </div>
+
+
+    <div class="question-container">
+        <div class="question-card">
+            <div class="question-btn">
+                <h2>When you look in the mirror, what makes you sigh the most ?</h2>
+                <button class="arrow-btn">▼</button>
+            </div>
+            <ul>
+                <li onclick="document.getElementById('vitaminoSec').scrollIntoView({behavior:'smooth'});">Ugh, my color
+                    looks dull already.</li>
+                <li onclick="document.getElementById('curlSec').scrollIntoView({behavior:'smooth'});">My curls are out
+                    of control.</li>
+            </ul>
+        </div>
+        <div class="question-card">
+            <div class="question-btn">
+
+                <h2>If your hair could talk, what would it complain about ?</h2>
+                <button class="arrow-btn">▼</button>
+            </div>
+            <ul>
+                <li onclick="document.getElementById('vitaminoSec').scrollIntoView({behavior:'smooth'});">Stop letting
+                    my color fade so fast!</li>
+                <li onclick="document.getElementById('vitaminoSec').scrollIntoView({behavior:'smooth'});">I’m tired of
+                    being dry and frizzy.</li>
+            </ul>
+        </div>
+    </div>
+    <div class="laundiya">
+        <img src="./imgs/1.jpg">
+    </div>
+
+    <div class="container">
+        <section id="vitaminoSec">
+            <div class="vitaminoHeading">
+                <img src="./imgs/2.png" alt="">
+                <h2>Your 30 Day Color lock Plan</h2>
+            </div>Hi Cutie! Don’t be dukhi about your fading color! Keep your shade glossy,
+            shiny, and selfie-ready.</p>
+            <h3>Your Daily/Weekly Routine:</h3>
+            <ul>
+                <h4>Double Shampoo</h4>
+                <li>Wash twice with Vitamino Color Spectrum Shampoo → 1st wash removes impurities, 2nd wash hugs your
+                    color.</li>
+                <li>Twice the shampoo, twice the shine, zero dull vibes.</li>
+            </ul>
+            <ul>
+                <h4>Mask Time = Me Time</h4>
+                <li>Apply Vitamino Mask, leave for 5 mins (scroll Insta, do a selfie, thank us later).</li>
+                <li>It’s like a spa facial, but for your hair color</li>
+            </ul>
+            <ul>
+                <h4>Glass Shine Serum </h4>
+                <li>Apply serum on towel dried hair.
+                    Activate with heat either by blow dry or
+                    a straightening iron for instant shine.
+                </li>
+                <li>Think of it as your color’s bodyguard.</li>
+            </ul>
+            <ul>
+                <h4>Blow Dry & Taddaaa</h4>
+                <li>Blow dry or style as usual → notice your color shining brighter than your ex’s future 😉.</li>
+            </ul>
+            <h3>Weekly Check-In:</h3>
+            <p>✨ Once a week, replace mask time with an extra pamper session (steam towel wrap for 5 mins = pro trick).
+            </p>
+            <h3>30-Day Promise:</h3>
+            <p>By Day 30, your color will still say hello, not goodbye. Book your salon Gloss for the next 100 days of
+                love ❤️.</p>
+            
+            <div class="vitcontainer" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <h2 style="margin: 25px;">Ask your hairdresser to get one for you!</h2>
+            <div class="vitP">
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-shampoo-for-all-colored-hair-300-ml/IN3474637286590.html"><img src="./imgs/V1.webp" alt=""></a>
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-mask-for-all-colored-hair-250-ml/IN3474637309367.html"><img src="./imgs/V2.webp" alt=""></a>
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-glass-shine-serum-for-all-colored-hair-30-ml/IN3474637314415.html"><img src="./imgs/V3.webp" alt=""></a>
+                
+            </div>
+            </div>
+            
+        </section>
+
+        <section id="curlSec">
+            <div class="vitaminoHeading">
+                <img src="./imgs/3.webp" alt="">
+                <h2 style="font-size: 45px;">Bouncy 30-Day Curl Care Plan</h2>
+            </div>
+            <p>Hola curl queen! Frizz, who? Make your curls the main character in every
+                selfie!</p>
+            <h3>Your Daily/Weekly Routine:</h3>
+            <ul>
+                <h4>Double Shampoo</h4>
+                <li>1st wash = clears scalp, 2nd wash = preps curls for hydration.</li>
+                <li>Two washes = zero buildup, hello juicy curls.</li>
+            </ul>
+            <ul>
+                <h4>Mask Time = Curl Hug</h4>
+                <li>Apply Curl Expression Mask → leave 5 mins → let your curls sip hydration like iced coffee on a hot
+                    day.</li>
+                <li>More bounce, less poof.</li>
+            </ul>
+            <ul>
+                <h4>Leave-In Cream</h4>
+                <li>On damp hair, apply Curl Expression Creamsection by section.</li>
+                <li>Because every curl deserves VIP treatment.</li>
+            </ul>
+            <ul>
+                <h4>Styling Secret</h4>
+                <li>Air dry or diffuse low heat. Scrunch once dry to break the cast.</li>
+                <li>Soft curls, not stiff curls. Big yes ✅.</li>
+            </ul>
+            <h3>Refresh Days (Day 2/3):</h3>
+            <p>a pea-size of styler (Leave-In Cream) → scrunch → DONE!.</p>
+            <p>Because curls should live longer than your eyeliner.</p>
+            <h3>30-Day Promise:</h3>
+            <p>By Day 30, expect compliments like: Are those your natural curls? (wink and say yesss 💅).</p>
+
+            <div class="vitcontainer" style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                <h2 style="margin: 25px;">Ask your hairdresser to get one for you!</h2>
+            <div class="vitP">
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-shampoo-for-all-colored-hair-300-ml/IN3474637286590.html"><img src="./imgs/C1.webp" alt=""></a>
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-mask-for-all-colored-hair-250-ml/IN3474637309367.html"><img src="./imgs/C2.webp" alt=""></a>
+                <a href="https://in.lorealpartnershop.com/en/loreal-professionnel-vitamino-color-spectrum-glass-shine-serum-for-all-colored-hair-30-ml/IN3474637314415.html"><img src="./imgs/C3.webp" alt=""></a>
+                
+            </div>
+            </div>
+        </section>
+
+
+</body>
+<script>
+    const images = document.querySelectorAll('.slider img');
+    const prevBtn = document.querySelector('.btn.left');
+    const nextBtn = document.querySelector('.btn.right');
+    let index = 0;
+
+    function showSlide(newIndex) {
+        images.forEach((img, i) => {
+            img.classList.remove('active', 'prev');
+            if (i === newIndex) img.classList.add('active');
+            if (i === index) img.classList.add('prev');
+        });
+        index = newIndex;
+    }
+
+    // nextBtn.addEventListener('click', () => {
+    //     let newIndex = (index + 1) % images.length;
+    //     showSlide(newIndex);
+    // });
+
+    // prevBtn.addEventListener('click', () => {
+    //     let newIndex = (index - 1 + images.length) % images.length;
+    //     showSlide(newIndex);
+    // });
+
+    setInterval(() => {
+        let newIndex = (index + 1) % images.length;
+        showSlide(newIndex);
+    }, 1500);
+    document.querySelectorAll('.question-card').forEach(card => {
+        const button = card.querySelector('.arrow-btn');
+        const list = card.querySelector('ul');
+
+        button.addEventListener('click', () => {
+            button.classList.toggle('rotated');
+            list.classList.toggle('show');
+        });
+    });
+</script>
