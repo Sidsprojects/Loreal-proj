@@ -176,15 +176,11 @@
         .question-card ul {
             margin: 0.8rem 0 0;
             padding: 0;
-            display: none;
-            /* hidden by default */
-        }
-
-        .question-card ul.show {
             width: 100%;
             display: block;
             animation: dropdown 0.3s ease;
         }
+
 
         @keyframes dropdown {
             from {
@@ -387,7 +383,6 @@
         <div class="question-card">
             <div class="question-btn">
                 <h2>When you look in the mirror, what makes you sigh the most ?</h2>
-                <button class="arrow-btn">▼</button>
             </div>
             <ul>
                 <li onclick="document.getElementById('vitaminoSec').scrollIntoView({behavior:'smooth'});">Ugh, my color
@@ -400,7 +395,6 @@
             <div class="question-btn">
 
                 <h2>If your hair could talk, what would it complain about ?</h2>
-                <button class="arrow-btn">▼</button>
             </div>
             <ul>
                 <li onclick="document.getElementById('vitaminoSec').scrollIntoView({behavior:'smooth'});">Stop letting
